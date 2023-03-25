@@ -1,0 +1,21 @@
+config:
+  target: "http://20.194.2.144:3022"
+  socketio:
+    transports: ["websocket"]
+  phases:
+    - duration: 60
+      arrivalRate: 10
+
+
+scenarios:
+  - name: "Emit to /room1"
+    engine: socketio
+    flow:
+      - emit:
+          namespace: "/room1"
+          channel: "groupmsgtest2"
+          data: {
+				"roomid": "room1",
+				"msg": "group msg testing..."
+			}
+

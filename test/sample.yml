@@ -1,0 +1,20 @@
+config:
+  target: "http://175.45.195.135/api"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: Warm up
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up load
+  payload:
+    path: "keywords.csv"
+    fields:
+      - "keyword"
+
+scenarios:
+  - name: "Search"
+    flow:
+      - get:
+          url: "/test1?name={{ keyword }}"
